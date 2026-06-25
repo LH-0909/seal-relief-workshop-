@@ -1,3 +1,5 @@
+/* ── Overlay ─────────────────────────────────────────── */
+
 .overlay {
   position: fixed;
   inset: 0;
@@ -23,7 +25,7 @@
   background:
     linear-gradient(90deg, rgba(18, 26, 31, 0.42), transparent 28%, transparent 70%, rgba(23, 21, 17, 0.22)),
     radial-gradient(circle at 56% 45%, transparent 0 34%, rgba(23, 21, 17, 0.16) 58%, rgba(23, 21, 17, 0.46) 100%);
-  animation: veilLift 5450ms cubic-bezier(0.22, 0.78, 0.2, 1) forwards;
+  animation: veilBreathe 6800ms cubic-bezier(0.22, 0.78, 0.2, 1) forwards;
 }
 
 .overlay::after {
@@ -35,6 +37,8 @@
   opacity: 0.5;
 }
 
+/* ── Stage ──────────────────────────────────────────── */
+
 .stage {
   position: absolute;
   inset: 0;
@@ -42,20 +46,7 @@
   overflow: hidden;
 }
 
-.stage::before {
-  position: absolute;
-  inset: -8%;
-  z-index: 7;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at 24% 56%, rgba(233, 221, 197, 0.14), transparent 28%),
-    radial-gradient(ellipse at 70% 38%, rgba(233, 221, 197, 0.12), transparent 30%),
-    linear-gradient(100deg, transparent, rgba(244, 235, 216, 0.14), transparent);
-  filter: blur(18px);
-  opacity: 0;
-  transform: translateX(-1.2vw);
-  animation: mistDrift 5450ms cubic-bezier(0.25, 0.82, 0.22, 1) forwards;
-}
+/* ── Frames ─────────────────────────────────────────── */
 
 .frame {
   position: absolute;
@@ -63,10 +54,9 @@
   z-index: 1;
   opacity: 0;
   overflow: hidden;
-  transform: scale(1.012);
-  animation-duration: 5450ms;
+  animation-duration: 6800ms;
   animation-fill-mode: forwards;
-  animation-timing-function: cubic-bezier(0.22, 0.78, 0.2, 1);
+  animation-timing-function: cubic-bezier(0.25, 0.82, 0.22, 1);
   mask-image:
     linear-gradient(90deg, #000 0%, #000 74%, rgba(0, 0, 0, 0.85) 88%, transparent 100%),
     radial-gradient(ellipse at 48% 54%, #000 0%, #000 60%, transparent 84%);
@@ -80,9 +70,9 @@
   object-position: center center;
   filter: saturate(0.82) contrast(1.04) brightness(0.86);
   transform-origin: 45% 52%;
-  animation-duration: 5450ms;
+  animation-duration: 6800ms;
   animation-fill-mode: forwards;
-  animation-timing-function: cubic-bezier(0.22, 0.78, 0.2, 1);
+  animation-timing-function: cubic-bezier(0.25, 0.82, 0.22, 1);
 }
 
 .frame::after {
@@ -95,21 +85,13 @@
   content: "";
 }
 
-.frame1 {
-  animation-name: frameOne;
-}
+/* ── Frame keyframe assignments ─────────────────────── */
 
-.frame1 img {
-  animation-name: imageOne;
-}
+.frame1 { animation-name: frameOne; }
+.frame1 img { animation-name: imageOne; }
 
-.frame2 {
-  animation-name: frameTwo;
-}
-
-.frame2 img {
-  animation-name: imageTwo;
-}
+.frame2 { animation-name: frameTwo; }
+.frame2 img { animation-name: imageTwo; }
 
 .frame3 {
   animation-name: frameThree;
@@ -117,10 +99,7 @@
     linear-gradient(90deg, #000 0%, #000 84%, transparent 100%),
     radial-gradient(ellipse at 58% 48%, #000 0%, #000 62%, transparent 86%);
 }
-
-.frame3 img {
-  animation-name: imageThree;
-}
+.frame3 img { animation-name: imageThree; }
 
 .frame4 {
   animation-name: frameFour;
@@ -128,94 +107,77 @@
     linear-gradient(90deg, #000 0%, #000 88%, transparent 100%),
     radial-gradient(ellipse at 62% 48%, #000 0%, #000 66%, transparent 88%);
 }
+.frame4 img { animation-name: imageFour; }
 
-.frame4 img {
-  animation-name: imageFour;
-}
+.frame5 { animation-name: frameFive; }
+.frame5 img { animation-name: imageFive; }
 
-.frame5 {
-  animation-name: frameFive;
-}
+.frame6 { animation-name: frameSix; }
+.frame6 img { animation-name: imageSix; }
 
-.frame5 img {
-  animation-name: imageFive;
-}
+/* ── SVG Plum Blossoms ──────────────────────────────── */
 
-.frame6 {
-  animation-name: frameSix;
-}
-
-.frame6 img {
-  animation-name: imageSix;
-}
-
-.inkWash {
+.plumSvg {
   position: absolute;
-  inset: -18%;
-  z-index: 6;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at 8% 52%, rgba(23, 21, 17, 0.58), transparent 25%),
-    radial-gradient(ellipse at 24% 60%, rgba(23, 21, 17, 0.28), transparent 30%),
-    linear-gradient(90deg, rgba(23, 21, 17, 0.36), transparent 45%);
-  filter: blur(14px);
-  mix-blend-mode: multiply;
-  opacity: 0;
-  transform: translateX(-1.5vw) scale(1.01);
-  animation: inkSpread 5450ms cubic-bezier(0.22, 0.78, 0.2, 1) forwards;
-}
-
-.plumReveal {
-  position: absolute;
-  top: 4%;
-  right: -4%;
+  top: 2%;
+  right: -2%;
   z-index: 7;
-  width: min(48vw, 720px);
-  height: 36vh;
+  width: min(52vw, 760px);
+  height: 42vh;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 64% 42%, rgba(155, 45, 32, 0.12), transparent 5%),
-    radial-gradient(circle at 48% 58%, rgba(155, 45, 32, 0.09), transparent 4%),
-    linear-gradient(118deg, transparent 0 45%, rgba(244, 235, 216, 0.18) 56%, transparent 68%);
-  filter: blur(10px);
   opacity: 0;
   transform: translateX(12px) scale(0.98);
-  animation: plumBreath 5450ms cubic-bezier(0.22, 0.78, 0.2, 1) forwards;
+  animation: plumBreath 6800ms cubic-bezier(0.22, 0.78, 0.2, 1) forwards;
 }
 
-.sealDrop {
+.blossom {
+  opacity: 0;
+  animation: blossomFadeIn 6800ms cubic-bezier(0.22, 0.78, 0.2, 1) forwards;
+}
+
+.blossomMobileHidden {}
+
+@keyframes blossomFadeIn {
+  0%, 44% { opacity: 0; transform: translate(0, 3px) scale(0.94); }
+  55% { opacity: 0.22; }
+  65% { opacity: 0.16; }
+  100% { opacity: 0.05; transform: translate(1px, 0) scale(1); }
+}
+
+/* ── SVG Seal Stamp ─────────────────────────────────── */
+
+.sealStamp {
   position: absolute;
   right: clamp(8.4vw, 10vw, 12vw);
   bottom: clamp(9.8vh, 11vh, 13vh);
   z-index: 9;
   width: clamp(54px, 5.3vw, 82px);
   aspect-ratio: 1;
-  border: 3px solid rgba(155, 45, 32, 0.76);
-  border-radius: 8px;
   opacity: 0;
-  transform: translate3d(10px, -28px, 0) scale(1.06);
-  animation: sealDrop 5450ms cubic-bezier(0.3, 0.86, 0.22, 1) forwards;
+  transform: translate3d(0, -280px, 0) rotate(-3deg) scale(1.1);
+  animation: sealStampDrop 6800ms cubic-bezier(0.3, 0.86, 0.22, 1) forwards;
 }
 
-.sealDrop::before,
-.sealDrop::after {
+.sealStamp::after {
   position: absolute;
+  inset: -18px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(155, 45, 32, 0.18), transparent 72%);
+  filter: blur(6px);
+  opacity: 0;
+  animation: sealEdgeBleed 6800ms ease-out forwards;
   content: "";
+  pointer-events: none;
+  z-index: -1;
 }
 
-.sealDrop::before {
-  inset: 12%;
-  border: 2px solid rgba(155, 45, 32, 0.62);
-  border-radius: 5px;
+.sealSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
-.sealDrop::after {
-  inset: 26% 18%;
-  background:
-    linear-gradient(90deg, transparent 0 14%, rgba(155, 45, 32, 0.66) 14% 24%, transparent 24% 42%, rgba(155, 45, 32, 0.6) 42% 52%, transparent 52% 70%, rgba(155, 45, 32, 0.64) 70% 80%, transparent 80%),
-    linear-gradient(0deg, transparent 0 18%, rgba(155, 45, 32, 0.56) 18% 27%, transparent 27% 48%, rgba(155, 45, 32, 0.5) 48% 58%, transparent 58% 78%, rgba(155, 45, 32, 0.5) 78% 86%, transparent 86%);
-  opacity: 0.72;
-}
+/* ── Skip Button ────────────────────────────────────── */
 
 .skipButton {
   position: absolute;
@@ -239,6 +201,8 @@
   color: var(--paper-light);
 }
 
+/* ── Loading State ──────────────────────────────────── */
+
 .loadingState {
   position: absolute;
   inset: 0;
@@ -260,9 +224,13 @@
   letter-spacing: 0.1em;
 }
 
+/* ── Exit transition ────────────────────────────────── */
+
 .finishing {
   animation: overlayOut 420ms ease forwards;
 }
+
+/* ── Hero text entrance (global) ────────────────────── */
 
 :global(.intro-replay-link) {
   border: 0;
@@ -309,114 +277,127 @@
   animation: heroTextIn 640ms ease 460ms both;
 }
 
+/* ═══════════════════════════════════════════════════════
+   KEYFRAMES — FRAMES
+   Principle: next frame reaches full before current fades.
+   No brightness dip. No clip-path. Gentle blur transitions.
+   ═══════════════════════════════════════════════════════ */
+
 @keyframes frameOne {
-  0% { opacity: 0; filter: blur(1.6px); transform: scale(1.018) translateX(-8px); }
-  7% { opacity: 0.78; filter: blur(0.8px); }
-  17% { opacity: 0.56; }
-  26% { opacity: 0; filter: blur(1.4px); transform: scale(1.006) translateX(0); }
+  0%   { opacity: 0; filter: blur(1.2px); }
+  6%   { opacity: 1; filter: blur(0); }
+  21%  { opacity: 1; filter: blur(0); }
+  34%  { opacity: 0; filter: blur(1.8px); }
   100% { opacity: 0; }
 }
 
 @keyframes frameTwo {
-  0%, 10% { opacity: 0; filter: blur(1.6px); transform: scale(1.016) translateX(-7px); }
-  20% { opacity: 0.9; filter: blur(0.4px); }
-  32% { opacity: 0.62; }
-  42%, 100% { opacity: 0; filter: blur(1.2px); transform: scale(1.004) translateX(0); }
+  0%, 14% { opacity: 0; filter: blur(1.4px); }
+  21%  { opacity: 1; filter: blur(0); }
+  38%  { opacity: 1; filter: blur(0); }
+  52%  { opacity: 0; filter: blur(1.8px); }
+  100% { opacity: 0; }
 }
 
 @keyframes frameThree {
-  0%, 30% { opacity: 0; filter: blur(1.6px); transform: scale(1.018) translateX(8px); clip-path: inset(0 0 0 34%); }
-  43% { opacity: 0.92; filter: blur(0.4px); clip-path: inset(0 0 0 0); }
-  54% { opacity: 0.62; }
-  64%, 100% { opacity: 0; filter: blur(1px); transform: scale(1.004) translateX(0); }
+  0%, 31% { opacity: 0; filter: blur(1.4px); }
+  38%  { opacity: 1; filter: blur(0); }
+  55%  { opacity: 1; filter: blur(0); }
+  70%  { opacity: 0; filter: blur(1.8px); }
+  100% { opacity: 0; }
 }
 
 @keyframes frameFour {
-  0%, 47% { opacity: 0; filter: blur(1.3px); transform: scale(1.014); }
-  59% { opacity: 0.95; filter: blur(0.3px); }
-  71% { opacity: 0.72; }
-  80%, 100% { opacity: 0; filter: blur(0.8px); transform: scale(1.002); }
+  0%, 48% { opacity: 0; filter: blur(1.2px); }
+  55%  { opacity: 1; filter: blur(0); }
+  72%  { opacity: 1; filter: blur(0); }
+  85%  { opacity: 0; filter: blur(1.6px); }
+  100% { opacity: 0; }
 }
 
 @keyframes frameFive {
-  0%, 64% { opacity: 0; filter: blur(1.1px); transform: scale(1.012); }
-  75% { opacity: 0.95; filter: blur(0); }
-  83% { opacity: 0.95; }
-  91% { opacity: 0.36; filter: blur(0.7px); }
-  96%, 100% { opacity: 0; transform: scale(1.003); }
+  0%, 63% { opacity: 0; filter: blur(1.2px); }
+  72%  { opacity: 1; filter: blur(0); }
+  88%  { opacity: 1; filter: blur(0); }
+  100% { opacity: 0; filter: blur(1.6px); }
 }
 
 @keyframes frameSix {
-  0%, 78% { opacity: 0; filter: blur(1px); transform: scale(1.012) translateX(6px); }
-  89% { opacity: 0.98; filter: blur(0); }
-  100% { opacity: 1; transform: scale(1) translateX(0); }
+  0%, 76% { opacity: 0; filter: blur(1px); }
+  85%  { opacity: 1; filter: blur(0); }
+  100% { opacity: 1; filter: blur(0); }
 }
 
+/* ── Image Ken Burns (gentle zoom + pan) ────────────── */
+
 @keyframes imageOne {
-  0% { transform: scale(1.022) translateX(-10px); }
-  100% { transform: scale(1.004) translateX(0); }
+  0%   { transform: scale(1.035) translateX(-8px); }
+  100% { transform: scale(1.002) translateX(0); }
 }
 
 @keyframes imageTwo {
-  0% { transform: scale(1.02) translateX(-7px); }
-  100% { transform: scale(1.004) translateX(2px); }
+  0%   { transform: scale(1.032) translateX(-5px); }
+  100% { transform: scale(1.002) translateX(2px); }
 }
 
 @keyframes imageThree {
-  0% { transform: scale(1.018) translateX(8px); }
-  100% { transform: scale(1.004) translateX(0); }
+  0%   { transform: scale(1.032) translateX(6px); }
+  100% { transform: scale(1.002) translateX(0); }
 }
 
 @keyframes imageFour {
-  0% { transform: scale(1.014); }
+  0%   { transform: scale(1.025); }
   100% { transform: scale(1.002); }
 }
 
 @keyframes imageFive {
-  0% { transform: scale(1.012); }
+  0%   { transform: scale(1.022); }
   100% { transform: scale(1.002); }
 }
 
 @keyframes imageSix {
-  0% { transform: scale(1.012) translateX(6px); }
-  100% { transform: scale(1); }
+  0%   { transform: scale(1.022) translateX(4px); }
+  100% { transform: scale(1) translateX(0); }
 }
 
-@keyframes veilLift {
-  0% { opacity: 0.96; }
-  68% { opacity: 0.32; }
+/* ── Veil: gentle breathing ─────────────────────────── */
+
+@keyframes veilBreathe {
+  0%   { opacity: 0.94; }
+  20%  { opacity: 0.7; }
+  40%  { opacity: 0.52; }
+  60%  { opacity: 0.38; }
+  80%  { opacity: 0.24; }
   100% { opacity: 0.1; }
 }
 
-@keyframes mistDrift {
-  0%, 10% { opacity: 0; transform: translateX(-1.2vw); }
-  32% { opacity: 0.5; }
-  68% { opacity: 0.32; transform: translateX(1vw); }
-  100% { opacity: 0.08; transform: translateX(0); }
-}
-
-@keyframes inkSpread {
-  0% { opacity: 0.5; transform: translateX(-1.5vw) scale(1.02); }
-  24% { opacity: 0.28; }
-  58% { opacity: 0.18; }
-  100% { opacity: 0.04; transform: translateX(0) scale(1); }
-}
+/* ── Plum Blossoms ──────────────────────────────────── */
 
 @keyframes plumBreath {
-  0%, 32% { opacity: 0; transform: translateX(12px) scale(0.98); }
-  52% { opacity: 0.22; transform: translateX(4px) scale(0.995); }
-  72% { opacity: 0.16; }
-  100% { opacity: 0.05; transform: translateX(0) scale(1); }
+  0%, 44% { opacity: 0; transform: translateX(12px) scale(0.96); }
+  54% { opacity: 0.9; }
+  64% { opacity: 0.5; transform: translateX(4px) scale(0.995); }
+  100% { opacity: 0.2; transform: translateX(0) scale(1); }
 }
 
-@keyframes sealDrop {
-  0%, 72% { opacity: 0; transform: translate3d(10px, -28px, 0) scale(1.06); }
-  80% { opacity: 0; }
-  86% { opacity: 0.56; transform: translate3d(4px, -9px, 0) scale(1.025); }
-  91% { opacity: 0.84; transform: translate3d(0, 0, 0) scale(0.982); }
-  96% { opacity: 0.28; transform: translate3d(0, 0, 0) scale(1); }
-  100% { opacity: 0; transform: translate3d(0, 0, 0) scale(1); }
+/* ── Seal Stamp Drop (physics-based) ─────────────────── */
+
+@keyframes sealStampDrop {
+  0%, 76% { opacity: 0; transform: translate3d(0, -280px, 0) rotate(-3deg) scale(1.1); }
+  80%  { opacity: 0.9; transform: translate3d(0, -8px, 0) rotate(0deg) scale(1.02); }
+  84%  { opacity: 1; transform: translate3d(0, 4px, 0) rotate(2deg) scale(0.96); }
+  87%  { opacity: 1; transform: translate3d(0, -2px, 0) rotate(-1deg) scale(1.01); }
+  90%  { opacity: 1; transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
 }
+
+@keyframes sealEdgeBleed {
+  0%, 90% { opacity: 0; }
+  96%  { opacity: 0.14; }
+  100% { opacity: 0.06; }
+}
+
+/* ── Overlay Out ─────────────────────────────────────── */
 
 @keyframes overlayOut {
   to {
@@ -424,6 +405,8 @@
     visibility: hidden;
   }
 }
+
+/* ── Hero Text In ────────────────────────────────────── */
 
 @keyframes heroTextIn {
   from {
@@ -436,6 +419,10 @@
   }
 }
 
+/* ═══════════════════════════════════════════════════════
+   MOBILE (< 640px)
+   ═══════════════════════════════════════════════════════ */
+
 @media (max-width: 640px) {
   .overlay {
     min-height: 100dvh;
@@ -443,13 +430,13 @@
 
   .frame {
     inset: -1% -42%;
-    animation-duration: 3300ms;
+    animation-duration: 4100ms;
     mask-image: linear-gradient(90deg, #000 0%, #000 82%, transparent 100%);
   }
 
   .frame img {
     object-position: 43% center;
-    animation-duration: 3300ms;
+    animation-duration: 4100ms;
   }
 
   .frame3 img,
@@ -459,18 +446,25 @@
     object-position: 66% center;
   }
 
-  .sealDrop {
-    right: 10vw;
-    bottom: 12vh;
-    width: 50px;
-    animation-duration: 3300ms;
+  .overlay::before,
+  .plumSvg,
+  .blossom {
+    animation-duration: 4100ms;
   }
 
-  .plumReveal,
-  .stage::before,
-  .inkWash,
-  .overlay::before {
-    animation-duration: 3300ms;
+  .sealStamp {
+    right: 10vw;
+    bottom: 12vh;
+    width: clamp(44px, 12vw, 64px);
+    animation-duration: 4100ms;
+  }
+
+  .sealStamp::after {
+    animation-duration: 4100ms;
+  }
+
+  .blossomMobileHidden {
+    display: none;
   }
 
   .skipButton {
@@ -478,6 +472,8 @@
     right: max(14px, env(safe-area-inset-right));
   }
 }
+
+/* ── Reduced Motion ──────────────────────────────────── */
 
 @media (prefers-reduced-motion: reduce) {
   .overlay {

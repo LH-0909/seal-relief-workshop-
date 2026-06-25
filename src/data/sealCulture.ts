@@ -5,6 +5,8 @@ export type TimelineNode = {
   period: string
   text: string
   caseId?: string
+  /** Direct image path when no caseId (for conceptual / overview nodes) */
+  image?: string
 }
 
 export type CultureCard = {
@@ -13,6 +15,8 @@ export type CultureCard = {
   text: string
   tags: string[]
 }
+
+const BASE = import.meta.env.BASE_URL
 
 export const timelineNodes: TimelineNode[] = [
   {
@@ -24,22 +28,26 @@ export const timelineNodes: TimelineNode[] = [
   {
     title: '秦汉玺印',
     period: '赏印',
-    text: '以抽象印面和红白文图形表示权信、文字秩序与边界意识，不补充未经提供的实物图片。',
+    text: '秦汉时期玺印制度趋于完备，印面文字布局严谨、边界清晰，体现权信与秩序。',
+    image: `${BASE}images/seal-gallery/qin-han-seal.png`,
   },
   {
     title: '明清文人篆刻',
     period: '观印',
     text: '文人参与使篆刻逐渐成为可品读的视觉艺术，章法、刀法和印谱传播共同形成风貌。',
+    image: `${BASE}images/seal-gallery/ming-qing-school-seal.png`,
   },
   {
     title: '近现代印学传承',
     period: '承印',
     text: '不同审美取向在册页中并置，可从印文布局、金石气和线面关系中观察传承变化。',
+    image: `${BASE}images/seal-gallery/modern-master-seal.png`,
   },
   {
     title: '当代数字浮雕',
     period: '制印',
     text: '通过蒙版、高度图与局部光照，将平面印文转换为可调参数的数字浮雕体验。',
+    image: `${BASE}images/demo-results/relief-sample.png`,
   },
 ]
 

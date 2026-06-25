@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { INTRO_SEQUENCE_STORAGE_KEY, introSequenceFrames } from '../../data/introSequence'
+import { SEAL_OUTER_PATH, SEAL_INNER_PATH, SEAL_TEXT_STROKES, SEAL_VERTICAL_STROKES } from '../../data/svgShapes'
+import InkRevealCanvas from './InkRevealCanvas'
+import PlumBlossomSVG from './PlumBlossomSVG'
 import styles from './InkRevealIntro.module.css'
 
 type IntroStatus = 'idle' | 'loading' | 'playing' | 'finishing'
@@ -9,8 +12,8 @@ type InkRevealIntroProps = {
   onStatusChange?: (status: 'idle' | 'active' | 'complete') => void
 }
 
-const INTRO_DURATION_MS = 5450
-const MOBILE_INTRO_DURATION_MS = 3300
+const INTRO_DURATION_MS = 6800
+const MOBILE_INTRO_DURATION_MS = 4100
 const EXIT_DURATION_MS = 420
 const LOAD_TIMEOUT_MS = 6000
 
@@ -54,6 +57,7 @@ export default function InkRevealIntro({ replaySignal, onStatusChange }: InkReve
   const timersRef = useRef<number[]>([])
   const replayRef = useRef(replaySignal)
   const activeRef = useRef(false)
+  const introStartTimeRef = useRef(0)
 
   const clearTimers = useCallback(() => {
     timersRef.current.forEach((timer) => window.clearTimeout(timer))
@@ -111,6 +115,7 @@ export default function InkRevealIntro({ replaySignal, onStatusChange }: InkReve
       if (!activeRef.current) return
 
       markPlayed()
+      introStartTimeRef.current = performance.now()
       setStatus('playing')
       const duration = isMobileViewport() ? MOBILE_INTRO_DURATION_MS : INTRO_DURATION_MS
       const finishTimer = window.setTimeout(finishIntro, duration)
@@ -142,6 +147,8 @@ export default function InkRevealIntro({ replaySignal, onStatusChange }: InkReve
     return null
   }
 
+  const duration = isMobileViewport() ? MOBILE_INTRO_DURATION_MS : INTRO_DURATION_MS
+
   return (
     <div className={styles.overlay + (status === 'finishing' ? ' ' + styles.finishing : '')}>
       <button className={styles.skipButton} type="button" onClick={skipIntro}>
@@ -159,9 +166,50 @@ export default function InkRevealIntro({ replaySignal, onStatusChange }: InkReve
               <img src={frame.src} alt="" draggable={false} />
             </div>
           ))}
-          <div className={styles.inkWash} />
-          <div className={styles.plumReveal} />
-          <div className={styles.sealDrop} />
+
+          {/* Canvas layer: ink bleed + particles */}
+          <InkRevealCanvas
+            startTimeRef={introStartTimeRef}
+            isPlaying={status === 'playing'}
+            durationMs={duration}
+          />
+
+          {/* SVG plum blossoms — replaces old CSS gradient .plumReveal */}
+          <PlumBlossomSVG />
+
+          {/* SVG seal stamp — replaces old CSS .sealDrop */}
+          <div className={styles.sealStamp}>
+            <svg viewBox="0 0 84 84" aria-hidden="true" className={styles.sealSvg}>
+              <defs>
+                <filter id="seal-rough" x="-20%" y="-20%" width="140%" height="140%">
+                  <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+                  <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2" xChannelSelector="R" yChannelSelector="G" />
+                </filter>
+                <filter id="seal-bleed-blur" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+                </filter>
+              </defs>
+
+              {/* Outer border */}
+              <path d={SEAL_OUTER_PATH} fill="none" stroke="#9b2d20" strokeWidth="2.8" filter="url(#seal-rough)" opacity="0.88" />
+
+              {/* Inner border */}
+              <path d={SEAL_INNER_PATH} fill="none" stroke="#9b2d20" strokeWidth="1.4" opacity="0.72" />
+
+              {/* Horizontal character strokes */}
+              {SEAL_TEXT_STROKES.map((d, i) => (
+                <path key={`h-${i}`} d={d} fill="none" stroke="#9b2d20" strokeWidth="2.4" strokeLinecap="round" opacity="0.78" />
+              ))}
+
+              {/* Vertical character strokes */}
+              {SEAL_VERTICAL_STROKES.map((d, i) => (
+                <path key={`v-${i}`} d={d} fill="none" stroke="#9b2d20" strokeWidth="2.2" strokeLinecap="round" opacity="0.7" />
+              ))}
+
+              {/* Subtle paper texture fill */}
+              <rect x="4" y="4" width="76" height="76" rx="6" fill="rgba(244,235,216,0.06)" />
+            </svg>
+          </div>
         </div>
       )}
     </div>

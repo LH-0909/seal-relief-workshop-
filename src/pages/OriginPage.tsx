@@ -8,6 +8,7 @@ import SealTimeline from '../components/culture/SealTimeline'
 import SourceDisclosure from '../components/common/SourceDisclosure'
 import type { GalleryCase } from '../data/galleryCases'
 import { modernCards, schoolCards } from '../data/sealCulture'
+import { asset } from '../utils/assetPath'
 
 export default function OriginPage() {
   const [selectedCase, setSelectedCase] = useState<GalleryCase | null>(null)
@@ -27,8 +28,7 @@ export default function OriginPage() {
             </p>
           </div>
           <div className="origin-hero__seal" aria-hidden="true">
-            <span />
-            <i />
+            <img src={asset('images/atmosphere/origin-hero-seal.png')} alt="" />
           </div>
         </section>
 

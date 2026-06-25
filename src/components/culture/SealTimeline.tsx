@@ -23,6 +23,8 @@ export default function SealTimeline({ onOpen }: SealTimelineProps) {
                   <button type="button" onClick={() => onOpen(caseItem)}>
                     <img src={caseItem.image} alt={caseItem.alt} loading="lazy" />
                   </button>
+                ) : node.image ? (
+                  <img src={node.image} alt={node.title} loading="lazy" />
                 ) : (
                   <div className="abstract-seal" aria-hidden="true">
                     <span />

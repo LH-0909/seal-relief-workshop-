@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { galleryCases } from '../../data/galleryCases'
+import { asset } from '../../utils/assetPath'
 
 const scrollIds = ['you-wen-sima-xi', 'deng-shiru', 'wu-changshuo']
 
@@ -46,7 +47,9 @@ export default function AncientSealScroll() {
                   </article>
                 ))}
                 <article className="scroll-case-node scroll-case-node--digital">
-                  <span className="scroll-thumb scroll-thumb--abstract" />
+                  <span className="scroll-thumb">
+                    <img src={asset('images/demo-results/workbench-preview.png')} alt="数字浮雕创作工作台预览" loading="lazy" />
+                  </span>
                   <strong>数字浮雕创作</strong>
                   <small>进入工作台，以高度图和光照重现质感。</small>
                 </article>
