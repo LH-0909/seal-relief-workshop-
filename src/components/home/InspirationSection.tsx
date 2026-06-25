@@ -1,22 +1,23 @@
 import { Link } from 'react-router-dom'
+import { asset } from '../../utils/assetPath'
 
 const scenes = [
   {
     title: '朱砂落纸',
     text: '从纸面压痕、墨色留白与印泥颗粒进入方寸世界。',
-    image: '/images/atmosphere/seal-scene-02.png',
+    image: asset('images/atmosphere/seal-scene-02.png'),
     to: '/gallery',
   },
   {
     title: '印玺雕琢',
     text: '以器物与刻痕想象印章由平面走向浮雕的厚度。',
-    image: '/images/atmosphere/seal-scene-03.png',
+    image: asset('images/atmosphere/seal-scene-03.png'),
     to: '/workbench',
   },
   {
     title: '山水文房',
     text: '把印谱、砚台和纸墨放回克制的文房语境。',
-    image: '/images/atmosphere/seal-scene-04.png',
+    image: asset('images/atmosphere/seal-scene-04.png'),
     to: '/origin',
   },
 ]

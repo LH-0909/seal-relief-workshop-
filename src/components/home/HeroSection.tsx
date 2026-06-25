@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { asset } from '../../utils/assetPath'
 
 type HeroSectionProps = {
   onReplayIntro?: () => void
@@ -35,7 +36,7 @@ export default function HeroSection({ onReplayIntro }: HeroSectionProps) {
       </div>
 
       <div className="hero-image-wrap">
-        <img src="/images/atmosphere/seal-scene-01.png" alt="宣纸、红色印玺、朱砂方印、砚台和毛笔氛围图" />
+        <img src={asset('images/atmosphere/seal-scene-01.png')} alt="宣纸、红色印玺、朱砂方印、砚台和毛笔氛围图" />
         <span className="hero-image-tag">朱砂 · 宣纸 · 浮雕工坊</span>
       </div>
     </section>
