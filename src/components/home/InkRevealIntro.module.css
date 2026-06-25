@@ -1,0 +1,499 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 20% 54%, rgba(233, 221, 197, 0.12), transparent 32rem),
+    linear-gradient(135deg, #111715 0%, #17222a 48%, #16130f 100%);
+  color: var(--paper-light);
+  isolation: isolate;
+}
+
+.overlay::before,
+.overlay::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+}
+
+.overlay::before {
+  z-index: 2;
+  background:
+    linear-gradient(90deg, rgba(18, 26, 31, 0.42), transparent 28%, transparent 70%, rgba(23, 21, 17, 0.22)),
+    radial-gradient(circle at 56% 45%, transparent 0 34%, rgba(23, 21, 17, 0.16) 58%, rgba(23, 21, 17, 0.46) 100%);
+  animation: veilLift 5450ms cubic-bezier(0.22, 0.78, 0.2, 1) forwards;
+}
+
+.overlay::after {
+  z-index: 8;
+  background:
+    linear-gradient(180deg, rgba(23, 21, 17, 0.18), transparent 30%, rgba(23, 21, 17, 0.18)),
+    repeating-linear-gradient(90deg, rgba(244, 235, 216, 0.03) 0 1px, transparent 1px 76px);
+  mix-blend-mode: multiply;
+  opacity: 0.5;
+}
+
+.stage {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.stage::before {
+  position: absolute;
+  inset: -8%;
+  z-index: 7;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 24% 56%, rgba(233, 221, 197, 0.14), transparent 28%),
+    radial-gradient(ellipse at 70% 38%, rgba(233, 221, 197, 0.12), transparent 30%),
+    linear-gradient(100deg, transparent, rgba(244, 235, 216, 0.14), transparent);
+  filter: blur(18px);
+  opacity: 0;
+  transform: translateX(-1.2vw);
+  animation: mistDrift 5450ms cubic-bezier(0.25, 0.82, 0.22, 1) forwards;
+}
+
+.frame {
+  position: absolute;
+  inset: -1.5%;
+  z-index: 1;
+  opacity: 0;
+  overflow: hidden;
+  transform: scale(1.012);
+  animation-duration: 5450ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.22, 0.78, 0.2, 1);
+  mask-image:
+    linear-gradient(90deg, #000 0%, #000 74%, rgba(0, 0, 0, 0.85) 88%, transparent 100%),
+    radial-gradient(ellipse at 48% 54%, #000 0%, #000 60%, transparent 84%);
+  mask-composite: intersect;
+}
+
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: saturate(0.82) contrast(1.04) brightness(0.86);
+  transform-origin: 45% 52%;
+  animation-duration: 5450ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: cubic-bezier(0.22, 0.78, 0.2, 1);
+}
+
+.frame::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(23, 21, 17, 0.26), transparent 32%, transparent 70%, rgba(23, 21, 17, 0.15)),
+    radial-gradient(circle at 82% 70%, rgba(155, 45, 32, 0.04), transparent 18rem);
+  content: "";
+}
+
+.frame1 {
+  animation-name: frameOne;
+}
+
+.frame1 img {
+  animation-name: imageOne;
+}
+
+.frame2 {
+  animation-name: frameTwo;
+}
+
+.frame2 img {
+  animation-name: imageTwo;
+}
+
+.frame3 {
+  animation-name: frameThree;
+  mask-image:
+    linear-gradient(90deg, #000 0%, #000 84%, transparent 100%),
+    radial-gradient(ellipse at 58% 48%, #000 0%, #000 62%, transparent 86%);
+}
+
+.frame3 img {
+  animation-name: imageThree;
+}
+
+.frame4 {
+  animation-name: frameFour;
+  mask-image:
+    linear-gradient(90deg, #000 0%, #000 88%, transparent 100%),
+    radial-gradient(ellipse at 62% 48%, #000 0%, #000 66%, transparent 88%);
+}
+
+.frame4 img {
+  animation-name: imageFour;
+}
+
+.frame5 {
+  animation-name: frameFive;
+}
+
+.frame5 img {
+  animation-name: imageFive;
+}
+
+.frame6 {
+  animation-name: frameSix;
+}
+
+.frame6 img {
+  animation-name: imageSix;
+}
+
+.inkWash {
+  position: absolute;
+  inset: -18%;
+  z-index: 6;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 8% 52%, rgba(23, 21, 17, 0.58), transparent 25%),
+    radial-gradient(ellipse at 24% 60%, rgba(23, 21, 17, 0.28), transparent 30%),
+    linear-gradient(90deg, rgba(23, 21, 17, 0.36), transparent 45%);
+  filter: blur(14px);
+  mix-blend-mode: multiply;
+  opacity: 0;
+  transform: translateX(-1.5vw) scale(1.01);
+  animation: inkSpread 5450ms cubic-bezier(0.22, 0.78, 0.2, 1) forwards;
+}
+
+.plumReveal {
+  position: absolute;
+  top: 4%;
+  right: -4%;
+  z-index: 7;
+  width: min(48vw, 720px);
+  height: 36vh;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 64% 42%, rgba(155, 45, 32, 0.12), transparent 5%),
+    radial-gradient(circle at 48% 58%, rgba(155, 45, 32, 0.09), transparent 4%),
+    linear-gradient(118deg, transparent 0 45%, rgba(244, 235, 216, 0.18) 56%, transparent 68%);
+  filter: blur(10px);
+  opacity: 0;
+  transform: translateX(12px) scale(0.98);
+  animation: plumBreath 5450ms cubic-bezier(0.22, 0.78, 0.2, 1) forwards;
+}
+
+.sealDrop {
+  position: absolute;
+  right: clamp(8.4vw, 10vw, 12vw);
+  bottom: clamp(9.8vh, 11vh, 13vh);
+  z-index: 9;
+  width: clamp(54px, 5.3vw, 82px);
+  aspect-ratio: 1;
+  border: 3px solid rgba(155, 45, 32, 0.76);
+  border-radius: 8px;
+  opacity: 0;
+  transform: translate3d(10px, -28px, 0) scale(1.06);
+  animation: sealDrop 5450ms cubic-bezier(0.3, 0.86, 0.22, 1) forwards;
+}
+
+.sealDrop::before,
+.sealDrop::after {
+  position: absolute;
+  content: "";
+}
+
+.sealDrop::before {
+  inset: 12%;
+  border: 2px solid rgba(155, 45, 32, 0.62);
+  border-radius: 5px;
+}
+
+.sealDrop::after {
+  inset: 26% 18%;
+  background:
+    linear-gradient(90deg, transparent 0 14%, rgba(155, 45, 32, 0.66) 14% 24%, transparent 24% 42%, rgba(155, 45, 32, 0.6) 42% 52%, transparent 52% 70%, rgba(155, 45, 32, 0.64) 70% 80%, transparent 80%),
+    linear-gradient(0deg, transparent 0 18%, rgba(155, 45, 32, 0.56) 18% 27%, transparent 27% 48%, rgba(155, 45, 32, 0.5) 48% 58%, transparent 58% 78%, rgba(155, 45, 32, 0.5) 78% 86%, transparent 86%);
+  opacity: 0.72;
+}
+
+.skipButton {
+  position: absolute;
+  top: max(18px, env(safe-area-inset-top));
+  right: max(18px, env(safe-area-inset-right));
+  z-index: 15;
+  border: 1px solid rgba(233, 221, 197, 0.18);
+  border-radius: 999px;
+  background: rgba(23, 21, 17, 0.44);
+  color: rgba(244, 235, 216, 0.86);
+  padding: 8px 13px;
+  font-size: 13px;
+  font-weight: 800;
+  backdrop-filter: blur(12px);
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.skipButton:hover {
+  border-color: rgba(167, 123, 69, 0.44);
+  background: rgba(23, 21, 17, 0.62);
+  color: var(--paper-light);
+}
+
+.loadingState {
+  position: absolute;
+  inset: 0;
+  z-index: 14;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 48%, rgba(233, 221, 197, 0.08), transparent 18rem),
+    linear-gradient(135deg, rgba(22, 34, 43, 0.95), rgba(23, 21, 17, 0.98));
+}
+
+.loadingState span {
+  border: 1px solid rgba(233, 221, 197, 0.14);
+  border-radius: 999px;
+  background: rgba(244, 235, 216, 0.045);
+  color: rgba(233, 221, 197, 0.78);
+  padding: 10px 16px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+}
+
+.finishing {
+  animation: overlayOut 420ms ease forwards;
+}
+
+:global(.intro-replay-link) {
+  border: 0;
+  background: transparent;
+  color: rgba(167, 123, 69, 0.84);
+  padding: 0;
+  font-size: 12px;
+  font-weight: 900;
+  text-align: left;
+}
+
+:global(.intro-replay-link:hover) {
+  color: var(--paper-light);
+}
+
+:global(.site-page.intro-active .home-hero__copy .eyebrow),
+:global(.site-page.intro-active .home-hero__copy h1),
+:global(.site-page.intro-active .home-hero__copy .hero-lede),
+:global(.site-page.intro-active .home-hero__copy .hero-actions),
+:global(.site-page.intro-active .home-hero__copy .hero-proof),
+:global(.site-page.intro-active .home-hero__copy .intro-replay-link) {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+:global(.site-page.intro-complete .home-hero__copy .eyebrow) {
+  animation: heroTextIn 620ms ease both;
+}
+
+:global(.site-page.intro-complete .home-hero__copy h1) {
+  animation: heroTextIn 700ms ease 90ms both;
+}
+
+:global(.site-page.intro-complete .home-hero__copy .hero-lede) {
+  animation: heroTextIn 720ms ease 210ms both;
+}
+
+:global(.site-page.intro-complete .home-hero__copy .hero-actions) {
+  animation: heroTextIn 700ms ease 340ms both;
+}
+
+:global(.site-page.intro-complete .home-hero__copy .hero-proof),
+:global(.site-page.intro-complete .home-hero__copy .intro-replay-link) {
+  animation: heroTextIn 640ms ease 460ms both;
+}
+
+@keyframes frameOne {
+  0% { opacity: 0; filter: blur(1.6px); transform: scale(1.018) translateX(-8px); }
+  7% { opacity: 0.78; filter: blur(0.8px); }
+  17% { opacity: 0.56; }
+  26% { opacity: 0; filter: blur(1.4px); transform: scale(1.006) translateX(0); }
+  100% { opacity: 0; }
+}
+
+@keyframes frameTwo {
+  0%, 10% { opacity: 0; filter: blur(1.6px); transform: scale(1.016) translateX(-7px); }
+  20% { opacity: 0.9; filter: blur(0.4px); }
+  32% { opacity: 0.62; }
+  42%, 100% { opacity: 0; filter: blur(1.2px); transform: scale(1.004) translateX(0); }
+}
+
+@keyframes frameThree {
+  0%, 30% { opacity: 0; filter: blur(1.6px); transform: scale(1.018) translateX(8px); clip-path: inset(0 0 0 34%); }
+  43% { opacity: 0.92; filter: blur(0.4px); clip-path: inset(0 0 0 0); }
+  54% { opacity: 0.62; }
+  64%, 100% { opacity: 0; filter: blur(1px); transform: scale(1.004) translateX(0); }
+}
+
+@keyframes frameFour {
+  0%, 47% { opacity: 0; filter: blur(1.3px); transform: scale(1.014); }
+  59% { opacity: 0.95; filter: blur(0.3px); }
+  71% { opacity: 0.72; }
+  80%, 100% { opacity: 0; filter: blur(0.8px); transform: scale(1.002); }
+}
+
+@keyframes frameFive {
+  0%, 64% { opacity: 0; filter: blur(1.1px); transform: scale(1.012); }
+  75% { opacity: 0.95; filter: blur(0); }
+  83% { opacity: 0.95; }
+  91% { opacity: 0.36; filter: blur(0.7px); }
+  96%, 100% { opacity: 0; transform: scale(1.003); }
+}
+
+@keyframes frameSix {
+  0%, 78% { opacity: 0; filter: blur(1px); transform: scale(1.012) translateX(6px); }
+  89% { opacity: 0.98; filter: blur(0); }
+  100% { opacity: 1; transform: scale(1) translateX(0); }
+}
+
+@keyframes imageOne {
+  0% { transform: scale(1.022) translateX(-10px); }
+  100% { transform: scale(1.004) translateX(0); }
+}
+
+@keyframes imageTwo {
+  0% { transform: scale(1.02) translateX(-7px); }
+  100% { transform: scale(1.004) translateX(2px); }
+}
+
+@keyframes imageThree {
+  0% { transform: scale(1.018) translateX(8px); }
+  100% { transform: scale(1.004) translateX(0); }
+}
+
+@keyframes imageFour {
+  0% { transform: scale(1.014); }
+  100% { transform: scale(1.002); }
+}
+
+@keyframes imageFive {
+  0% { transform: scale(1.012); }
+  100% { transform: scale(1.002); }
+}
+
+@keyframes imageSix {
+  0% { transform: scale(1.012) translateX(6px); }
+  100% { transform: scale(1); }
+}
+
+@keyframes veilLift {
+  0% { opacity: 0.96; }
+  68% { opacity: 0.32; }
+  100% { opacity: 0.1; }
+}
+
+@keyframes mistDrift {
+  0%, 10% { opacity: 0; transform: translateX(-1.2vw); }
+  32% { opacity: 0.5; }
+  68% { opacity: 0.32; transform: translateX(1vw); }
+  100% { opacity: 0.08; transform: translateX(0); }
+}
+
+@keyframes inkSpread {
+  0% { opacity: 0.5; transform: translateX(-1.5vw) scale(1.02); }
+  24% { opacity: 0.28; }
+  58% { opacity: 0.18; }
+  100% { opacity: 0.04; transform: translateX(0) scale(1); }
+}
+
+@keyframes plumBreath {
+  0%, 32% { opacity: 0; transform: translateX(12px) scale(0.98); }
+  52% { opacity: 0.22; transform: translateX(4px) scale(0.995); }
+  72% { opacity: 0.16; }
+  100% { opacity: 0.05; transform: translateX(0) scale(1); }
+}
+
+@keyframes sealDrop {
+  0%, 72% { opacity: 0; transform: translate3d(10px, -28px, 0) scale(1.06); }
+  80% { opacity: 0; }
+  86% { opacity: 0.56; transform: translate3d(4px, -9px, 0) scale(1.025); }
+  91% { opacity: 0.84; transform: translate3d(0, 0, 0) scale(0.982); }
+  96% { opacity: 0.28; transform: translate3d(0, 0, 0) scale(1); }
+  100% { opacity: 0; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@keyframes overlayOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes heroTextIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .overlay {
+    min-height: 100dvh;
+  }
+
+  .frame {
+    inset: -1% -42%;
+    animation-duration: 3300ms;
+    mask-image: linear-gradient(90deg, #000 0%, #000 82%, transparent 100%);
+  }
+
+  .frame img {
+    object-position: 43% center;
+    animation-duration: 3300ms;
+  }
+
+  .frame3 img,
+  .frame4 img,
+  .frame5 img,
+  .frame6 img {
+    object-position: 66% center;
+  }
+
+  .sealDrop {
+    right: 10vw;
+    bottom: 12vh;
+    width: 50px;
+    animation-duration: 3300ms;
+  }
+
+  .plumReveal,
+  .stage::before,
+  .inkWash,
+  .overlay::before {
+    animation-duration: 3300ms;
+  }
+
+  .skipButton {
+    top: max(14px, env(safe-area-inset-top));
+    right: max(14px, env(safe-area-inset-right));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay {
+    display: none;
+  }
+
+  :global(.intro-replay-link) {
+    display: none;
+  }
+
+  :global(.site-page.intro-complete .home-hero__copy .eyebrow),
+  :global(.site-page.intro-complete .home-hero__copy h1),
+  :global(.site-page.intro-complete .home-hero__copy .hero-lede),
+  :global(.site-page.intro-complete .home-hero__copy .hero-actions),
+  :global(.site-page.intro-complete .home-hero__copy .hero-proof),
+  :global(.site-page.intro-complete .home-hero__copy .intro-replay-link) {
+    animation: none;
+  }
+}
