@@ -11,28 +11,28 @@ export type ImageUsage = {
 export const atmosphereImageUsage: ImageUsage[] = [
   {
     path: `${BASE}images/atmosphere/seal-scene-01.png`,
-    source: 'E:/古风氛围/seal-scene-01.png`,
+    source: 'E:/古风氛围/seal-scene-01.png',
     allowedModules: ['首页 Hero 右侧主视觉'],
     forbiddenUses: ['其他页面', '数字印谱馆', '工作台', '参数面板', 'Canvas 背景'],
     note: '只在首页 Hero 出现一次，使用渐变遮罩和边缘融合。',
   },
   {
     path: `${BASE}images/atmosphere/seal-scene-02.png`,
-    source: 'E:/古风氛围/seal-scene-02.png`,
+    source: 'E:/古风氛围/seal-scene-02.png',
     allowedModules: ['首页灵感卡片：朱砂落纸'],
     forbiddenUses: ['首页 Hero', 'origin', 'gallery', 'workbench', '参数面板'],
     note: '只作为首页灵感卡片氛围图。',
   },
   {
     path: `${BASE}images/atmosphere/seal-scene-03.png`,
-    source: 'E:/古风氛围/seal-scene-03.png`,
+    source: 'E:/古风氛围/seal-scene-03.png',
     allowedModules: ['首页灵感卡片：印玺雕琢'],
     forbiddenUses: ['首页 Hero', 'origin', 'gallery', 'workbench', '参数面板'],
     note: '只作为首页灵感卡片氛围图。',
   },
   {
     path: `${BASE}images/atmosphere/seal-scene-04.png`,
-    source: 'E:/古风氛围/seal-scene-04.png`,
+    source: 'E:/古风氛围/seal-scene-04.png',
     allowedModules: ['首页灵感卡片：山水文房'],
     forbiddenUses: ['首页 Hero', 'origin', 'gallery', 'workbench', '参数面板'],
     note: '只作为首页灵感卡片氛围图。',
